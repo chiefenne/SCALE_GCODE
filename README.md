@@ -16,7 +16,7 @@ This Python script scales the X, Y, and Z coordinates in a G-code file by specif
 Scale an input G-code file with default scaling factors and generate a default output file name.
 
 ```sh
-python scale_gcode.py input.gcode --x 1.5 --y 1.2 --z 1.0
+python scale_gcode.py input.gcode -x 1.5 -y 1.2 -z 1.0
 ```
 
 ### Command Line Arguments
