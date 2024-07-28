@@ -22,7 +22,7 @@ python scale_gcode.py input.gcode --x 1.5 --y 1.2 --z 1.0
 ### Command Line Arguments
 
 - `input_file`: Path to the input G-code file (required).
-- `--output_file`: Path to the output scaled G-code file (optional). If not provided, a default filename will be generated.
-- `--x`: Scaling factor for X axis. Default is 1.0.
-- `--y`: Scaling factor for Y axis. Default is 1.0.
-- `--z`: Scaling factor for Z axis. Default is 1.0.
+- `-o`: Path to the output scaled G-code file (optional). If not provided, a default filename will be generated.
+- `-x`: Scaling factor for X axis. Default is 1.0.
+- `-y`: Scaling factor for Y axis. Default is 1.0.
+- `-z`: Scaling factor for Z axis. Default is 1.0.
