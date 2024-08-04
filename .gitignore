@@ -1,2 +1,4 @@
 scale_gcode.build
 scale_gcode.dist
+debug_coordinates.txt
+.DS_Store
