@@ -4,7 +4,7 @@ This Python script scales the X, Y, and Z coordinates in a G-code file by specif
 
 ## Features
 
-- Scale G-code coordinates for X, Y, and Z axes independently.
+- Scale G-code coordinates for X, Y, and Z axes independently. (also scales I, J, K respectively for arc centers)
 - A default output file name is derived based on the input file and scaling factors.
 - Optionally an arbitrary output file name can be specified.
 

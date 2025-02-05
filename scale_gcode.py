@@ -14,11 +14,11 @@ import os
 
 def scale_gcode(input_file, output_file, scale_factors):
     """
-    Scale the G-code file by specified factors for each axis.
+    Scale the G-code file by specified factors for each axis and arcs.
 
     :param input_file: Path to the input G-code file.
     :param output_file: Path to the output scaled G-code file.
-    :param scale_factors: Dictionary containing scale factors for 'x', 'y', and 'z' axes.
+    :param scale_factors: Dictionary containing scale factors for 'x', 'y', and 'z' axes and corresponding 'i', 'j', 'k'.
     """
     with open(input_file, 'r') as file:
         lines = file.readlines()
@@ -26,7 +26,7 @@ def scale_gcode(input_file, output_file, scale_factors):
     scaled_lines = []
     for line in lines:
         scaled_line = line
-        for axis in ['X', 'Y', 'Z']:
+        for axis in ['X', 'Y', 'Z', 'I', 'J', 'K']:
             match = re.search(f"{axis}([-+]?[0-9]*\.?[0-9]+)", line)
             if match:
                 original_value = float(match.group(1))
@@ -42,7 +42,7 @@ def create_default_output_filename(input_file, scale_factors):
     Create a default output filename based on the input filename and scale factors.
 
     :param input_file: Path to the input G-code file.
-    :param scale_factors: Dictionary containing scale factors for 'x', 'y', and 'z' axes.
+    :param scale_factors: Dictionary containing scale factors for 'x', 'y', and 'z' axes and corresponding 'i', 'j', 'k'.
     :return: Generated output filename.
     """
     base_name, ext = os.path.splitext(input_file)
@@ -53,13 +53,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Scale a G-code file by specified factors for each axis.")
     parser.add_argument("input_file", help="Path to the input G-code file.")
     parser.add_argument("-o", help="Path to the output scaled G-code file. If not provided, a default filename will be generated.")
-    parser.add_argument("-x", type=float, default=1.0, help="Scaling factor for X axis. Default is 1.0")
-    parser.add_argument("-y", type=float, default=1.0, help="Scaling factor for Y axis. Default is 1.0")
-    parser.add_argument("-z", type=float, default=1.0, help="Scaling factor for Z axis. Default is 1.0")
-
+    parser.add_argument("-x", type=float, default=1.0, help="Scaling factor for X axis and I component of arc center. Default is 1.0")
+    parser.add_argument("-y", type=float, default=1.0, help="Scaling factor for Y axis and J component of arc center. Default is 1.0")
+    parser.add_argument("-z", type=float, default=1.0, help="Scaling factor for Z axis and K component of arc center. Default is 1.0")
     args = parser.parse_args()
 
-    scale_factors = {'x': args.x, 'y': args.y, 'z': args.z}
+    scale_factors = {'x': args.x, 'y': args.y, 'z': args.z, 'i': args.x, 'j': args.y, 'k': args.z}
 
     if args.o:
         output_file = args.o
